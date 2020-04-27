@@ -10,8 +10,6 @@ import Maths
 import Textures
 import Graphics
 
-# For viewing memory usage
-import psutil
 import os
 
 from TextInput import TextInput
@@ -30,9 +28,11 @@ class PyGameJam2020(arcade.Window):
         self.frames = 0
         self.time = 0
 
-        self.debug_text = ""
-        self.debug = True
-        self.debug_text_list = Graphics.create_text_list(self.debug_text, 12, 12)
+        self.debug = False
+        if self.debug:
+            import psutil
+            self.debug_text = ""
+            self.debug_text_list = Graphics.create_text_list(self.debug_text, 12, 12)
 
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
         self.process = psutil.Process(os.getpid())

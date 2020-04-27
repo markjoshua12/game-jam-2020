@@ -12,7 +12,7 @@ class SpikyBall(Enemy):
     
     def update(self):
 
-        if self.intersects(self.level.player):
+        if self.intersects(self.level.player) and self.level.player.curr_invis_frame <= 0:
             self.die()
 
         super().update()

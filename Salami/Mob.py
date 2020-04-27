@@ -31,13 +31,13 @@ class Mob(Entity):
         if dy != 0:
             self.center_y += dy
 
-            # collision_list_y = self.level.get_tiles(
-            #     int(self.left / TILE_SIZE),
-            #     int(self.bottom / TILE_SIZE),
-            #     int(self.right / TILE_SIZE),
-            #     int(self.top / TILE_SIZE))
+            collision_list_y = self.level.get_tiles(
+                int(self.left // TILE_SIZE),
+                int(self.bottom // TILE_SIZE),
+                int(self.right // TILE_SIZE),
+                int(self.top // TILE_SIZE))
 
-            collision_list_y = arcade.check_for_collision_with_list(self, self.level.tile_list)
+            # collision_list_y = arcade.check_for_collision_with_list(self, self.level.tile_list)
 
             for entity in collision_list_y:
                 if not entity.is_solid:
@@ -55,13 +55,13 @@ class Mob(Entity):
 
             self.center_x += dx
 
-            # collision_list_x = self.level.get_tiles(
-            #     int(self.left / TILE_SIZE),
-            #     int(self.bottom / TILE_SIZE),
-            #     int(self.right / TILE_SIZE),
-            #     int(self.top / TILE_SIZE))
+            collision_list_x = self.level.get_tiles(
+                int(self.left // TILE_SIZE),
+                int(self.bottom // TILE_SIZE),
+                int(self.right // TILE_SIZE),
+                int(self.top // TILE_SIZE))
 
-            collision_list_x = arcade.check_for_collision_with_list(self, self.level.tile_list)
+            # collision_list_x = arcade.check_for_collision_with_list(self, self.level.tile_list)
 
             for entity in collision_list_x:
                 if not entity.is_solid:

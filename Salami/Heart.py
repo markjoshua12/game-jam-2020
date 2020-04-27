@@ -10,6 +10,12 @@ class Heart(Mob):
     def update(self):
 
         if self.intersects(self.level.player):
-            self.level.player.heal(3)
+            if self.level.player.health < self.level.player.max_health:
+                self.level.player.heal(3)
+                self.removed = True
 
         super().update()
+
+    def create_hit_box(self):
+        import Maths
+        self.set_hit_box(Maths.create_hit_box(10, 10))

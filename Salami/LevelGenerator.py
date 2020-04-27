@@ -117,9 +117,6 @@ class LevelGen:
             self.curr_draw_speed -= 1
 
     def generateLevelStep(self):
-        # if self.current_room is None:
-        #         self.current_room = self.addRoom(self.x, self.y)
-        #         self.current_room.prev_room = self.current_room
         
         if self.curr_depth <= 0:
             print(f"Current depth is zero!")
@@ -233,7 +230,7 @@ class LevelGen:
                 if enemy_type == 0:
                     slem = Slime(Textures.get_texture(3, 2), entity_x, entity_y, self.level.difficulty)
                     self.level.add_entity_to_list(slem, self.level.entities)
-                    difficulty -= 1
+                    difficulty -= 2
                 elif enemy_type == 1:
                     enemy = Enemy(Textures.get_texture(0, 2), entity_x, entity_y, self.level.difficulty)
                     self.level.add_entity_to_list(enemy, self.level.entities)
@@ -250,7 +247,7 @@ class LevelGen:
             self.rooms[(x, y)] = room
             self.rooms_to_draw.append(room)
             self.curr_depth -= 1
-            print(f"Added room at: {x}, {y} | {self.curr_depth}")
+            # print(f"Added room at: {x}, {y} | {self.curr_depth}")
             return room
         return self.rooms.get((x, y))
         

@@ -87,7 +87,7 @@ class Enemy(Mob):
     def die(self):
         import random, Heart
         chance = random.randrange(0, 100)
-        if chance > 0:
+        if chance > 80:
             heart = Heart.Heart(self.center_x, self.center_y)
             self.level.add_entity_to_list(heart, self.level.entities)
         super().die()

@@ -13,6 +13,18 @@ from Projectile import Projectile
 class Player(Mob):
 
     def __init__(self, x, y, keyboard):
+        
+        # Textures
+        self.idle_texture = Textures.get_texture(0, 4)
+        self.idle_texture_mirrored = Textures.get_texture(0, 5)
+        self.walking_textures = Textures.get_textures(1, 4, 4)
+        self.walking_textures_mirrored = Textures.get_textures(1, 5, 4)
+        self.dash_textures = Textures.get_textures(5, 4, 3)
+        self.dash_textures_mirrored = Textures.get_textures(5, 5, 3)
+        self.crawl_textures = Textures.get_textures(7, 4, 4)
+        self.crawl_textures_mirrored = Textures.get_textures(7, 5, 4)
+
+        super().__init__(self.idle_texture, x, y)
 
         self.keyboard = keyboard
 
@@ -41,21 +53,10 @@ class Player(Mob):
         self.curr_crawl_frame = 0
         self.crawl_frame_speed = 16
 
-        self.health = 9
+        self.max_health = 9
+        self.health = self.max_health
         self.curr_invis_frame = 0
-        self.invis_frame = 150
-
-        # Textures
-        self.idle_texture = Textures.get_texture(0, 4)
-        self.idle_texture_mirrored = Textures.get_texture(0, 5)
-        self.walking_textures = Textures.get_textures(1, 4, 4)
-        self.walking_textures_mirrored = Textures.get_textures(1, 5, 4)
-        self.dash_textures = Textures.get_textures(5, 4, 3)
-        self.dash_textures_mirrored = Textures.get_textures(5, 5, 3)
-        self.crawl_textures = Textures.get_textures(7, 4, 4)
-        self.crawl_textures_mirrored = Textures.get_textures(7, 5, 4)
-
-        super().__init__(self.idle_texture, x, y)
+        self.invis_frame = 120
     
     def update(self):
 
@@ -211,3 +212,8 @@ class Player(Mob):
         if self.health <= 0:
             self.level.game_over = True
             self.level.game_over_timer = 180
+
+    def heal(self, amount):
+        super().heal(amount)
+        if self.health > self.max_health:
+            self.health = self.max_health

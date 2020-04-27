@@ -153,7 +153,7 @@ class Level:
         list.append(entity)
 
     def add_tile(self, tile):
-        # tile.set_hit_box(SQUARE_HIT_BOX)
+        tile.create_hit_box()
         tile.set_level(self)
         self._set_tile(int(tile.center_x // TILE_SIZE), int(tile.center_y // TILE_SIZE), tile)
 

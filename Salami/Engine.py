@@ -26,19 +26,21 @@ class Engine:
         pass
 
     def can_jump(self, entity, y_dist = 1):
-        x0 = int(entity.left / TILE_SIZE)
-        y0 = int(entity.bottom / TILE_SIZE)
-        x1 = int(entity.right / TILE_SIZE)
-        y1 = int(entity.top / TILE_SIZE)
-
-        tiles = self.level.get_tiles(x0, y0, x1, y1)
+        result = False
 
         entity.center_y -= y_dist
 
-        for tile in tiles:
-            if entity.intersects(tile):
-                return True
+        tiles = self.level.get_tiles(
+                int(entity.left // TILE_SIZE),
+                int(entity.bottom // TILE_SIZE),
+                int(entity.right // TILE_SIZE),
+                int(entity.top // TILE_SIZE))
 
-        entity.center_y += y_dist
+        for tile in tiles:
+            if tile.is_solid and entity.intersects(tile):
+                result = True
+                break
         
-        return False
+        entity.center_y += y_dist
+
+        return result

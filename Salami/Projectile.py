@@ -11,8 +11,12 @@ class Projectile(Mob):
         self.change_y = dy
 
         self.life = 600
-        self.damage = 1
+        self.damage = 3
         self.type = type
+
+    def create_hit_box(self):
+        import Maths
+        self.set_hit_box(Maths.create_hit_box(8, 8))
     
     def update(self):
         

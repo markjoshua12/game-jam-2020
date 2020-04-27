@@ -33,9 +33,9 @@ class PyGameJam2020(arcade.Window):
             import psutil
             self.debug_text = ""
             self.debug_text_list = Graphics.create_text_list(self.debug_text, 12, 12)
+            self.process = psutil.Process(os.getpid())
 
         os.chdir(os.path.dirname(os.path.abspath(__file__)))
-        self.process = psutil.Process(os.getpid())
         self.set_icon(pyglet.image.load("resources/icon.png"))
 
         self.text_input = TextInput()

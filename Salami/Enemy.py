@@ -34,7 +34,7 @@ class Enemy(Mob):
 
         for entity in collision_list:
             if isinstance(entity, Projectile):
-                self.hurt(entity.damage, entity.change_x)
+                self.hurt(entity.damage, 0)
 
         player = self.level.player
 
@@ -87,7 +87,7 @@ class Enemy(Mob):
     def die(self):
         import random, Heart
         chance = random.randrange(0, 100)
-        if chance > 90:
+        if chance > 0:
             heart = Heart.Heart(self.center_x, self.center_y)
             self.level.add_entity_to_list(heart, self.level.entities)
         super().die()

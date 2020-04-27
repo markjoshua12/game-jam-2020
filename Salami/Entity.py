@@ -1,6 +1,8 @@
 
 import arcade
 
+from Constants import SQUARE_HIT_BOX
+
 TILE_SIZE = 16
 
 
@@ -54,6 +56,9 @@ class Entity(arcade.Sprite):
         #     [TILE_SIZE_D2, TILE_SIZE_D2],
         #     [TILE_SIZE_D2, -TILE_SIZE_D2]
         # ])
+
+    def create_hit_box(self):
+        self.set_hit_box(SQUARE_HIT_BOX)
 
     def set_level(self, level):
         self.level = level

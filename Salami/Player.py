@@ -107,14 +107,14 @@ class Player(Mob):
             self.curr_attack_speed -= 1
 
         if self.keyboard.is_pressed("jump"):
-            if self.level.physics_engine.can_jump(1):
-            # if self.level.engine.can_jump(self, 1):
+            # if self.level.physics_engine.can_jump(1):
+            if self.level.engine.can_jump(self):
                 if not self.jumping:
                     Sounds.play(Sounds.JUMP)
                 self.level.physics_engine.jump(self.jump_height)
                 self.jumping = True
-            # elif self.level.engine.can_jump(self, -1):
-            elif self.level.physics_engine.can_jump(-1):
+            elif self.level.engine.can_jump(self, -1):
+            # elif self.level.physics_engine.can_jump(-1):
                 self.jumping = False
                 self.curr_jump_height = 0
                 
